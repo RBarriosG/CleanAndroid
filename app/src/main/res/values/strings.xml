@@ -1,16 +1,27 @@
 <resources>
-    <string name="app_name">Clean</string>
+    <string name="app_name">Parqueadero</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_title">Parqueadero ADN</string>
+    <string name="nav_header_subtitle">rodolfo.barrios@ceiba.com.co</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
-    <string name="menu_tools">Tools</string>
-    <string name="menu_share">Share</string>
-    <string name="menu_send">Send</string>
+    <string name="menu_parqueados">Parqueados</string>
+    <string name="menu_historial">Historial de vehiculos</string>
+    <string name="descripcion_fab">Boton flotante para agregar vehiculos al parqueadero</string>
+    <string name="placa">PLACA:</string>
+    <string name="tipo">TIPO:</string>
+    <string name="cilindraje">CILINDRAJE:</string>
+    <string name="fecha_de_ingreso">FECHA DE INGRESO:</string>
+    <string name="fecha_de_salida">FECHA DE SALIDA:</string>
+    <string name="total">TOTAL:</string>
+    <string name="imagen_del_vehiculo_correspondiente">Imagen del vehiculo correspondiente</string>
+    <string name="salida">Salida</string>
+    <string name="placa_vehiculo">Placa vehiculo</string>
+    <string name="carro">CARRO</string>
+    <string name="moto">MOTO</string>
+    <string name="agregar_vehiculo">Agregar vehiculo</string>
+    <string name="ingrese_placa_a_buscar">Ingrese placa a buscar</string>
+    <string name="boton_de_busqueda_parqueados">boton de busqueda parqueados</string>
 </resources>

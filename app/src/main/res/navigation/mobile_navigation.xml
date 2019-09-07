@@ -13,9 +13,9 @@
 
     <fragment
         android:id="@+id/nav_gallery"
-        android:name="co.com.ceiba.clean.fragment.GalleryFragment"
+        android:name="co.com.ceiba.clean.fragment.ParqueadoFragment"
         android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        tools:layout="@layout/fragment_parqueados" />
 
     <fragment
         android:id="@+id/nav_slideshow"
