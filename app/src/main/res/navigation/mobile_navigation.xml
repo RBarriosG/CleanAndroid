@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="co.com.ceiba.clean.fragment.HomeFragment"
+        android:name="co.com.ceiba.clean.fragment.HistorialesFragment"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_historiales" />
 
     <fragment
         android:id="@+id/nav_gallery"

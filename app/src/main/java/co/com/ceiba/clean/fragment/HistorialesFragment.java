@@ -10,12 +10,12 @@ import androidx.fragment.app.Fragment;
 
 import co.com.ceiba.clean.R;
 
-public class ParqueadoFragment extends Fragment {
+public class HistorialesFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        View root = inflater.inflate(R.layout.fragment_parqueados, container, false);
+        View root = inflater.inflate(R.layout.fragment_historiales, container, false);
 
         return root;
     }
