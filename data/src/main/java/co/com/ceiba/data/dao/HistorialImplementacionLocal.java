@@ -1,4 +1,4 @@
-package co.com.ceiba.data.entidad;
+package co.com.ceiba.data.dao;
 
 import android.app.Application;
 
@@ -10,6 +10,7 @@ import co.com.ceiba.data.async.IngresarVehiculoAsyncTask;
 import co.com.ceiba.data.conversor.ConversorHistorial;
 import co.com.ceiba.data.conversor.ConversorTipoVehiculo;
 import co.com.ceiba.data.db.BaseDeDatosParqueadero;
+import co.com.ceiba.data.entidad.HistorialEntity;
 import co.com.ceiba.domain.enumeracion.TipoVehiculo;
 import co.com.ceiba.domain.modelo.Historial;
 import co.com.ceiba.domain.repositorio.RepositorioHistorial;
@@ -26,7 +27,7 @@ public class HistorialImplementacionLocal implements RepositorioHistorial {
 
     @Override
     public List<Historial> listarHistoriales() {
-        return ConversorHistorial.convertirADominio(historialDao.listarHistoriales());
+       return ConversorHistorial.convertirADominio(historialDao.listarHistoriales().getValue());
     }
 
     @Override
@@ -43,12 +44,12 @@ public class HistorialImplementacionLocal implements RepositorioHistorial {
 
     @Override
     public List<Historial> listarVehiculosParqueados() {
-        return ConversorHistorial.convertirADominio(historialDao.listarVehiculosParqueados());
+        return ConversorHistorial.convertirADominio(historialDao.listarVehiculosParqueados().getValue());
     }
 
     @Override
     public Optional<Historial> obtenerVehiculoParqueado(String placa) {
-        HistorialEntity entity = historialDao.obtenerVehiculoParqueado(placa);
+        HistorialEntity entity = historialDao.obtenerVehiculoParqueado(placa).getValue();
         return entity == null ? Optional.<Historial>empty() : Optional.of(ConversorHistorial.convertirADominio(entity));
     }
 

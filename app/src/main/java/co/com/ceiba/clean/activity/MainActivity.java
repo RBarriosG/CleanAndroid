@@ -1,4 +1,4 @@
-package co.com.ceiba.clean;
+package co.com.ceiba.clean.activity;
 
 import android.os.Bundle;
 
@@ -20,6 +20,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.Menu;
+
+import co.com.ceiba.clean.R;
 
 public class MainActivity extends AppCompatActivity {
 

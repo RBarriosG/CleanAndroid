@@ -2,7 +2,7 @@ package co.com.ceiba.data.async;
 
 import android.os.AsyncTask;
 
-import co.com.ceiba.data.entidad.HistorialDao;
+import co.com.ceiba.data.dao.HistorialDao;
 import co.com.ceiba.data.entidad.HistorialEntity;
 
 public class IngresarVehiculoAsyncTask extends AsyncTask<HistorialEntity, Void, Void> {

@@ -1,4 +1,4 @@
-package co.com.ceiba.clean.ui.gallery;
+package co.com.ceiba.clean.viewmodel;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

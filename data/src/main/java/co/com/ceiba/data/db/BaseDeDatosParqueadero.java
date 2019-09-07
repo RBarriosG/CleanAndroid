@@ -6,7 +6,7 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-import co.com.ceiba.data.entidad.HistorialDao;
+import co.com.ceiba.data.dao.HistorialDao;
 import co.com.ceiba.data.entidad.HistorialEntity;
 
 @Database(entities = {HistorialEntity.class}, version = 1)
