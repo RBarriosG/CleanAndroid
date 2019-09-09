@@ -9,6 +9,7 @@ public class CasoDeUsoListarHistoriales {
 
     private final RepositorioHistorial repositorioHistorial;
 
+
     public CasoDeUsoListarHistoriales(RepositorioHistorial repositorioHistorial) {
         this.repositorioHistorial = repositorioHistorial;
     }

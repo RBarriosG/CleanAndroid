@@ -2,11 +2,6 @@ package co.com.ceiba.clean.activity;
 
 import android.os.Bundle;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-
-import android.view.View;
-
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -22,10 +17,14 @@ import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
 
 import co.com.ceiba.clean.R;
+import co.com.ceiba.clean.di.componente.ComponenteDelSistema;
+import co.com.ceiba.clean.di.componente.DaggerComponenteDelSistema;
 
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
+
+    private ComponenteDelSistema componenteDelSistema;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        this.componenteDelSistema = DaggerComponenteDelSistema.create();
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -60,4 +61,9 @@ public class MainActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
+    public ComponenteDelSistema getComponenteDelSistema() {
+        return componenteDelSistema;
+    }
+
 }

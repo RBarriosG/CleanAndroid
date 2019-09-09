@@ -1,6 +1,8 @@
 package co.com.ceiba.data.dao;
 
-import android.app.Application;
+import android.content.Context;
+
+import androidx.lifecycle.Observer;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,8 +22,8 @@ public class HistorialImplementacionLocal implements RepositorioHistorial {
 
     private final HistorialDao historialDao;
 
-    public HistorialImplementacionLocal(Application application) {
-        BaseDeDatosParqueadero bd = BaseDeDatosParqueadero.getInstance(application);
+    public HistorialImplementacionLocal(Context context) {
+        BaseDeDatosParqueadero bd = BaseDeDatosParqueadero.getInstance(context);
         this.historialDao = bd.historialDao();
     }
 

@@ -1,6 +1,7 @@
 package co.com.ceiba.clean.adapter;
 
 import android.app.AlertDialog;
+import android.os.AsyncTask;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -12,6 +13,7 @@ import java.util.List;
 
 import co.com.ceiba.clean.R;
 import co.com.ceiba.clean.activity.MainActivity;
+import co.com.ceiba.clean.fragment.ParqueadoFragment;
 import co.com.ceiba.domain.enumeracion.TipoVehiculo;
 import co.com.ceiba.domain.modelo.Historial;
 
@@ -76,7 +78,7 @@ public class RecyclerAdapterParqueado extends RecyclerView.Adapter<RecyclerViewH
                 .setMessage("  $ "+historial.getCobro())
                 .setPositiveButton("OK", (dialogInterface, i) -> {
 
-                    //Implementar metodo para salida de vehiculo
+                    AsyncTask.execute(() -> ParqueadoFragment.parqueadoViewModel.actualizarHistorial(historial));
 
                     parqueados.remove(posicion);
                     notifyDataSetChanged();

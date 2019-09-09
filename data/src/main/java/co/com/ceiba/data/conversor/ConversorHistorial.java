@@ -22,11 +22,14 @@ public class ConversorHistorial {
     }
 
     public static List<Historial> convertirADominio(List<HistorialEntity> historialEntities) {
-        List<Historial> historiales = new ArrayList<>();
-        for (int i = 0; i < historialEntities.size(); i++) {
-            historiales.add(convertirADominio(historialEntities.get(i)));
+        if (!historialEntities.isEmpty()) {
+            List<Historial> historiales = new ArrayList<>();
+            for (int i = 0; i < historialEntities.size(); i++) {
+                historiales.add(convertirADominio(historialEntities.get(i)));
+            }
+            return historiales;
         }
-        return historiales;
+        return new ArrayList<>();
     }
 
 }

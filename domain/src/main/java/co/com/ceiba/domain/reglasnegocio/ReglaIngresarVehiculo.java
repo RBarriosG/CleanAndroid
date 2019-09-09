@@ -46,7 +46,7 @@ public class ReglaIngresarVehiculo {
     }
 
     private boolean validarIngresoPlacaDiaHabil(String placa, LocalDateTime fechaIngreso) {
-        return reglaFecha.esDiaHabil(fechaIngreso) && !reglaPlaca.empiezaPorA(placa);
+        return reglaFecha.esDiaHabil(fechaIngreso) || !reglaPlaca.empiezaPorA(placa);
     }
 
 }

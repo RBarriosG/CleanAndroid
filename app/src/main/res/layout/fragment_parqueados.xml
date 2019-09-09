@@ -71,7 +71,7 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/exFb"
+        android:id="@+id/fabGuardar"
         style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
