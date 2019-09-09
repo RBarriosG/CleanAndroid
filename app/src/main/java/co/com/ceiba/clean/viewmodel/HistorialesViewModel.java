@@ -1,6 +1,5 @@
 package co.com.ceiba.clean.viewmodel;
 
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
 import java.util.List;
@@ -24,8 +23,8 @@ public class HistorialesViewModel extends ViewModel {
         this.casoDeUsoListarHistoriales = casoDeUsoListarHistoriales;
     }
 
-    public LiveData<List<Historial>> listarHistoriales(){
-        return (LiveData<List<Historial>>) casoDeUsoListarHistoriales.ejecutar();
+    public List<Historial> listarHistoriales(){
+        return casoDeUsoListarHistoriales.ejecutar();
     }
 
 }

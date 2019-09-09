@@ -29,7 +29,7 @@ public class HistorialImplementacionLocal implements RepositorioHistorial {
 
     @Override
     public List<Historial> listarHistoriales() {
-       return ConversorHistorial.convertirADominio(historialDao.listarHistoriales().getValue());
+       return ConversorHistorial.convertirADominio(historialDao.listarHistoriales());
     }
 
     @Override
@@ -46,12 +46,12 @@ public class HistorialImplementacionLocal implements RepositorioHistorial {
 
     @Override
     public List<Historial> listarVehiculosParqueados() {
-        return ConversorHistorial.convertirADominio(historialDao.listarVehiculosParqueados().getValue());
+        return ConversorHistorial.convertirADominio(historialDao.listarVehiculosParqueados());
     }
 
     @Override
     public Optional<Historial> obtenerVehiculoParqueado(String placa) {
-        HistorialEntity entity = historialDao.obtenerVehiculoParqueado(placa).getValue();
+        HistorialEntity entity = historialDao.obtenerVehiculoParqueado(placa);
         return entity == null ? Optional.<Historial>empty() : Optional.of(ConversorHistorial.convertirADominio(entity));
     }
 

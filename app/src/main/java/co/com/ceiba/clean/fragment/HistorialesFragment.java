@@ -1,5 +1,6 @@
 package co.com.ceiba.clean.fragment;
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,7 +11,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -31,6 +31,7 @@ public class HistorialesFragment extends Fragment {
     private RecyclerView recycler;
 
     private HistorialesViewModel historialesViewModel;
+
     @Inject
     ViewModelFactory viewModelFactory;
 
@@ -50,7 +51,7 @@ public class HistorialesFragment extends Fragment {
 
         recycler = root.findViewById(R.id.recyclerHistoriales);
         try {
-            historialesViewModel.listarHistoriales().observe(this, historiales -> adapter.setHistoriales(historiales));
+            AsyncTask.execute(() -> adapter.setHistoriales(historialesViewModel.listarHistoriales()));
         } catch (NullPointerException npe){
             Toast.makeText(getContext(), "No hay historial de vehiculos", Toast.LENGTH_SHORT).show();
         }

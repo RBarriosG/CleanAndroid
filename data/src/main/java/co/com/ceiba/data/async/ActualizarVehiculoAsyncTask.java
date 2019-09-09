@@ -15,7 +15,7 @@ public class ActualizarVehiculoAsyncTask extends AsyncTask<HistorialEntity, Void
 
     @Override
     protected Void doInBackground(HistorialEntity... historialEntities) {
-        historialDao.actualizarHistorial(historialEntities[0]);
+        historialDao.ingresarVehiculo(historialEntities[0]);
         return null;
     }
 }

@@ -55,21 +55,6 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
         tools:listitem="@layout/item_parqueo" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabRefrescar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="5dp"
-        android:layout_marginBottom="5dp"
-        android:backgroundTint="@color/colorPrimaryDark"
-        android:src="@drawable/ic_refresh_black_24dp"
-        app:layout_constraintBottom_toTopOf="@+id/fabGuardar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="1.0" />
-
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/fabGuardar"
         style="@style/Widget.MaterialComponents.ExtendedFloatingActionButton"

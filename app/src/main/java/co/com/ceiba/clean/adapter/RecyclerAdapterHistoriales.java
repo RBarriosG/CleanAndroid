@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import co.com.ceiba.clean.R;
@@ -44,8 +45,8 @@ public class RecyclerAdapterHistoriales extends RecyclerView.Adapter<RecyclerVie
         holder.textPlaca.setText(historiales.get(position).getVehiculo().getPlaca());
         holder.textTipo.setText(historiales.get(position).getVehiculo().getTipo() == TipoVehiculo.CARRO ? CARRO : MOTO);
         holder.textCilindraje.setText(String.valueOf(historiales.get(position).getVehiculo().getCilindraje()));
-        holder.textFechaIngreso.setText(historiales.get(position).getFechaIngreso().toString());
-        holder.textFechaSalida.setText(historiales.get(position).getFechaSalida().toString());
+        holder.textFechaIngreso.setText(historiales.get(position).getFechaIngreso().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
+        holder.textFechaSalida.setText(historiales.get(position).getFechaSalida().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
         holder.textCosto.setText(String.format("$ %s", historiales.get(position).getCobro()));
     }
 

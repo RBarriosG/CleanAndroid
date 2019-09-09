@@ -1,6 +1,5 @@
 package co.com.ceiba.clean.viewmodel;
 
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
 import java.time.LocalDateTime;
@@ -9,6 +8,7 @@ import java.util.Optional;
 
 import javax.inject.Inject;
 
+import co.com.ceiba.clean.viewmodel.async.IngresarVehiculo;
 import co.com.ceiba.domain.interactor.CasoDeUsoActualizarHistorial;
 import co.com.ceiba.domain.interactor.CasoDeUsoIngresarVehiculo;
 import co.com.ceiba.domain.interactor.CasoDeUsoListarVehiculosParqueados;
@@ -36,16 +36,17 @@ public class ParqueadoViewModel extends ViewModel {
         this.casoDeUsoIngresarVehiculo = casoDeUsoIngresarVehiculo;
     }
 
-    public LiveData<List<Historial>> listarParqueados(){
-        return (LiveData<List<Historial>>) casoDeUsoListarVehiculosParqueados.ejecutar();
+    public List<Historial> listarParqueados(){
+        return casoDeUsoListarVehiculosParqueados.ejecutar();
     }
 
-    public void ingresarVehiculo(Historial historial){
-        casoDeUsoIngresarVehiculo.ejecutar(historial);
+    public Historial ingresarVehiculo(Historial historial){
+        new IngresarVehiculo(casoDeUsoIngresarVehiculo).execute(historial);
+        return historial;
     }
 
-    public void actualizarHistorial(Historial historial){
-        casoDeUsoActualizarHistorial.ejecutar(historial.getVehiculo().getPlaca(), LocalDateTime.now());
+    public Optional<Double> actualizarHistorial(Historial historial){
+        return Optional.of(casoDeUsoActualizarHistorial.ejecutar(historial.getVehiculo().getPlaca(), LocalDateTime.now()));
     }
 
     public Optional<Historial> buscarVehiculoParqueado(String placa){
