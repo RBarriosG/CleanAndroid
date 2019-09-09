@@ -53,4 +53,9 @@ public class RecyclerAdapterHistoriales extends RecyclerView.Adapter<RecyclerVie
     public int getItemCount() {
         return historiales.size();
     }
+
+    public void setHistoriales(List<Historial> historiales){
+        this.historiales = historiales;
+        notifyDataSetChanged();
+    }
 }
