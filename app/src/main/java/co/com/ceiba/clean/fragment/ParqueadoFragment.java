@@ -3,12 +3,10 @@ package co.com.ceiba.clean.fragment;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.text.Editable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -102,15 +100,15 @@ public class ParqueadoFragment extends Fragment {
             List<Historial> historialesBuscado = new ArrayList<>();
 
             try {
-                parqueadoViewModel.buscarVehiculoParqueado(placa).map(historial -> historialesBuscado.add(historial));
+                if (parqueadoViewModel.buscarVehiculoParqueado(placa).isPresent()) {
+                    historialesBuscado.add(parqueadoViewModel.buscarVehiculoParqueado(placa).get());
+                }
             } catch (ExcepcionVehiculoNoSeEncuentraEnParqueadero e) {
                 DialogoExepcion.dialogoExepciones(getContext(), e.getMessage()).show();
-                adapter.setListaParqueos(parqueados);
             }
 
             adapter.setListaParqueos(historialesBuscado);
         } else {
-            Toast.makeText(getContext(), R.string.no_hay_datos_a_buscar, Toast.LENGTH_SHORT).show();
             adapter.setListaParqueos(parqueados);
         }
     }
@@ -125,7 +123,7 @@ public class ParqueadoFragment extends Fragment {
 
                     String placa;
 
-                    if (dialogoAgregarParqueo.placaEditText.getText().toString().equals("")) {
+                    if (Objects.requireNonNull(dialogoAgregarParqueo.placaEditText.getText()).toString().equals("")) {
                         dialogoAgregarParqueo.placaInput.setError("Placa vacia o menor a 6 caracteres");
                         return;
                     } else {
@@ -143,10 +141,10 @@ public class ParqueadoFragment extends Fragment {
 
                     int cilindraje;
 
-                    if (dialogoAgregarParqueo.cilindrajeEditText.getText().toString().equals("") && tipo == TipoVehiculo.MOTO) {
+                    if (Objects.requireNonNull(dialogoAgregarParqueo.cilindrajeEditText.getText()).toString().equals("") && tipo == TipoVehiculo.MOTO) {
                         dialogoAgregarParqueo.cilindrajeInput.setError("Debe ingresar el cilindraje");
                         return;
-                    } else if(dialogoAgregarParqueo.cilindrajeEditText.getText().toString().equals("") && tipo == TipoVehiculo.CARRO) {
+                    } else if (dialogoAgregarParqueo.cilindrajeEditText.getText().toString().equals("") && tipo == TipoVehiculo.CARRO) {
                         cilindraje = 0;
                     } else {
                         cilindraje = Integer.parseInt(Objects.requireNonNull(dialogoAgregarParqueo.cilindrajeEditText.getText()).toString().trim());
