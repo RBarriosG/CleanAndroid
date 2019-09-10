@@ -123,21 +123,33 @@ public class ParqueadoFragment extends Fragment {
         ((AlertDialog) Objects.requireNonNull(dialogoAgregarParqueo.getDialog())).getButton(DialogInterface.BUTTON_POSITIVE)
                 .setOnClickListener(view -> {
 
-                    String placa = "";
+                    String placa;
+
                     if (dialogoAgregarParqueo.placaEditText.getText().toString().equals("")) {
-                        dialogoAgregarParqueo.placaInput.setError("vacia o menor a 6 caracteres");
+                        dialogoAgregarParqueo.placaInput.setError("Placa vacia o menor a 6 caracteres");
+                        return;
                     } else {
                         placa = Objects.requireNonNull(dialogoAgregarParqueo.placaEditText.getText()).toString().toUpperCase().trim();
                     }
-                    int radioSeleccionado = dialogoAgregarParqueo.radioGrupoTipo.getCheckedRadioButtonId();
 
-                    int cilindraje = Integer.parseInt(Objects.requireNonNull(dialogoAgregarParqueo.cilindrajeEditText.getText()).toString().trim());
+                    int radioSeleccionado = dialogoAgregarParqueo.radioGrupoTipo.getCheckedRadioButtonId();
 
                     TipoVehiculo tipo;
                     if (radioSeleccionado == R.id.parqueosRbCarro) {
                         tipo = TipoVehiculo.CARRO;
                     } else {
                         tipo = TipoVehiculo.MOTO;
+                    }
+
+                    int cilindraje;
+
+                    if (dialogoAgregarParqueo.cilindrajeEditText.getText().toString().equals("") && tipo == TipoVehiculo.MOTO) {
+                        dialogoAgregarParqueo.cilindrajeInput.setError("Debe ingresar el cilindraje");
+                        return;
+                    } else if(dialogoAgregarParqueo.cilindrajeEditText.getText().toString().equals("") && tipo == TipoVehiculo.CARRO) {
+                        cilindraje = 0;
+                    } else {
+                        cilindraje = Integer.parseInt(Objects.requireNonNull(dialogoAgregarParqueo.cilindrajeEditText.getText()).toString().trim());
                     }
 
                     try {
