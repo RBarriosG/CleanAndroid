@@ -2,7 +2,6 @@ package co.com.ceiba.clean.fragment;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,6 +28,7 @@ import co.com.ceiba.clean.R;
 import co.com.ceiba.clean.activity.MainActivity;
 import co.com.ceiba.clean.adapter.RecyclerAdapterParqueado;
 import co.com.ceiba.clean.dialogo.DialogoAgregarParqueo;
+import co.com.ceiba.clean.dialogo.DialogoExepcion;
 import co.com.ceiba.clean.viewmodel.ParqueadoViewModel;
 import co.com.ceiba.clean.viewmodel.ViewModelFactory;
 import co.com.ceiba.domain.enumeracion.TipoVehiculo;
@@ -76,7 +76,7 @@ public class ParqueadoFragment extends Fragment {
         try {
             adapter.setListaParqueos(parqueados = parqueadoViewModel.listarParqueados());
         } catch (NullPointerException npe) {
-            dialogoExepciones("No hay vehiculos parqueados").show();
+            DialogoExepcion.dialogoExepciones(getContext(), getString(R.string.no_hay_vehiculos_parqueados)).show();
         }
 
         actualizarRecycler();
@@ -103,20 +103,20 @@ public class ParqueadoFragment extends Fragment {
             try {
                 parqueadoViewModel.buscarVehiculoParqueado(placa).map(historial -> historialesBuscado.add(historial));
             } catch (ExcepcionVehiculoNoSeEncuentraEnParqueadero e) {
-                dialogoExepciones(e.getMessage()).show();
+                DialogoExepcion.dialogoExepciones(getContext(), e.getMessage()).show();
                 adapter.setListaParqueos(parqueados);
             }
 
             adapter.setListaParqueos(historialesBuscado);
         } else {
-            Toast.makeText(getContext(), "No hay datos a buscar", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), R.string.no_hay_datos_a_buscar, Toast.LENGTH_SHORT).show();
             adapter.setListaParqueos(parqueados);
         }
     }
 
     private void guardar() {
         final DialogoAgregarParqueo dialogoAgregarParqueo = new DialogoAgregarParqueo();
-        dialogoAgregarParqueo.show(Objects.requireNonNull(getActivity()).getSupportFragmentManager(), "Dialogo Guardar");
+        dialogoAgregarParqueo.show(Objects.requireNonNull(getActivity()).getSupportFragmentManager(), getString(R.string.dialogo_guardar));
         getActivity().getSupportFragmentManager().executePendingTransactions();
 
         ((AlertDialog) Objects.requireNonNull(dialogoAgregarParqueo.getDialog())).getButton(DialogInterface.BUTTON_POSITIVE)
@@ -139,7 +139,7 @@ public class ParqueadoFragment extends Fragment {
                         parqueados.add(parqueadoViewModel.ingresarVehiculo(historial));
                     } catch (ExepcionLongitudValor | ExcepcionIngresoPlacaVehiculo |
                             ExcepcionVehiculoYaEstaEnParqueadero | ExcepcionMaximoCupoVehiculo e) {
-                        dialogoExepciones(e.getMessage()).show();
+                        DialogoExepcion.dialogoExepciones(getContext(), e.getMessage()).show();
                     }
                     adapter.setListaParqueos(parqueados);
                     adapter.notifyDataSetChanged();
@@ -147,12 +147,5 @@ public class ParqueadoFragment extends Fragment {
                 });
     }
 
-    private AlertDialog dialogoExepciones(String mensaje) {
-        AlertDialog.Builder dialogo = new AlertDialog.Builder(getContext());
-        dialogo.setTitle("ATENCION");
-        dialogo.setMessage(mensaje);
-        dialogo.setPositiveButton("OK", (dialogInterface, i) -> dialogInterface.dismiss());
-        return dialogo.create();
-    }
 
 }

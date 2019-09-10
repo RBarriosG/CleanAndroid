@@ -26,5 +26,11 @@
     <string name="boton_de_busqueda_parqueados">boton de busqueda parqueados</string>
     <string name="confirmar">CONFIRMAR</string>
     <string name="cancelar">CANCELAR</string>
+    <string name="no_hay_vehiculos_parqueados">No hay vehiculos parqueados</string>
+    <string name="no_hay_datos_a_buscar">No hay datos a buscar</string>
+    <string name="dialogo_guardar">Dialogo Guardar</string>
+    <string name="atencion">ATENCION</string>
+    <string name="no_hay_historiales_de_vehiculos">No hay historial de vehiculos</string>
+    <string name="generar_la_salida_del_vehiculo">¿Generar la salida del vehicuo?</string>
 
 </resources>

@@ -14,6 +14,7 @@ import java.util.List;
 
 import co.com.ceiba.clean.R;
 import co.com.ceiba.clean.activity.MainActivity;
+import co.com.ceiba.clean.dialogo.DialogoExepcion;
 import co.com.ceiba.clean.fragment.ParqueadoFragment;
 import co.com.ceiba.domain.enumeracion.TipoVehiculo;
 import co.com.ceiba.domain.excepcion.ExcepcionVehiculoNoSeEncuentraEnParqueadero;
@@ -72,7 +73,7 @@ public class RecyclerAdapterParqueado extends RecyclerView.Adapter<RecyclerViewH
         Historial historialActualizado = new Historial(parqueo.getVehiculo(), parqueo.getFechaIngreso(), LocalDateTime.now(), 0);
         AlertDialog.Builder dialogo = new AlertDialog.Builder(activity);
         dialogo.setTitle(R.string.confirmar);
-        dialogo.setMessage("¿Generar la salida del vehicuo?");
+        dialogo.setMessage(R.string.generar_la_salida_del_vehiculo);
         dialogo.setPositiveButton(R.string.confirmar, (dialogInterface, i) -> confirmarSalida(posicion, historialActualizado));
         dialogo.setNegativeButton(R.string.cancelar, (dialogInterface, i) -> dialogInterface.cancel());
         dialogo.create().show();
@@ -89,15 +90,8 @@ public class RecyclerAdapterParqueado extends RecyclerView.Adapter<RecyclerViewH
             dialogo.setPositiveButton("OK", (dialogInterface, i) -> Toast.makeText(activity, "Salida con Exito", Toast.LENGTH_SHORT).show());
             dialogo.create().show();
         } catch (ExcepcionVehiculoNoSeEncuentraEnParqueadero e){
-            dialogoExepciones(e.getMessage()).show();
+            DialogoExepcion.dialogoExepciones(activity, e.getMessage()).show();
         }
-    }
-
-    private AlertDialog dialogoExepciones(String mensaje){
-        AlertDialog.Builder dialogo = new AlertDialog.Builder(activity);
-        dialogo.setMessage(mensaje);
-        dialogo.setPositiveButton("OK", (dialogInterface, i) -> dialogInterface.dismiss());
-        return dialogo.create();
     }
 
 }
