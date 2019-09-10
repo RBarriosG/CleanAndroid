@@ -123,9 +123,13 @@ public class ParqueadoFragment extends Fragment {
 
                     String placa;
 
-                    if (Objects.requireNonNull(dialogoAgregarParqueo.placaEditText.getText()).toString().equals("")) {
-                        dialogoAgregarParqueo.placaInput.setError("Placa vacia o menor a 6 caracteres");
+                    if (Objects.requireNonNull(dialogoAgregarParqueo.placaEditText.getText()).toString().equals("") ||
+                            dialogoAgregarParqueo.placaEditText.getText().toString().length() < 5 ||
+                            dialogoAgregarParqueo.placaEditText.getText().toString().length() > 6) {
+
+                        dialogoAgregarParqueo.placaInput.setError("Placa vacia o menor a 5 caracteres o mayor a 6 ");
                         return;
+
                     } else {
                         placa = Objects.requireNonNull(dialogoAgregarParqueo.placaEditText.getText()).toString().toUpperCase().trim();
                     }
