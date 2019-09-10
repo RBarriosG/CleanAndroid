@@ -36,6 +36,7 @@ import co.com.ceiba.domain.excepcion.ExcepcionIngresoPlacaVehiculo;
 import co.com.ceiba.domain.excepcion.ExcepcionMaximoCupoVehiculo;
 import co.com.ceiba.domain.excepcion.ExcepcionVehiculoNoSeEncuentraEnParqueadero;
 import co.com.ceiba.domain.excepcion.ExcepcionVehiculoYaEstaEnParqueadero;
+import co.com.ceiba.domain.excepcion.ExepcionLongitudValor;
 import co.com.ceiba.domain.modelo.Historial;
 import co.com.ceiba.domain.modelo.Vehiculo;
 
@@ -75,7 +76,7 @@ public class ParqueadoFragment extends Fragment {
         try {
             adapter.setListaParqueos(parqueados = parqueadoViewModel.listarParqueados());
         } catch (NullPointerException npe) {
-            Toast.makeText(getContext(), "No hay vehiculos parqueados", Toast.LENGTH_SHORT).show();
+            dialogoExepciones("No hay vehiculos parqueados").show();
         }
 
         actualizarRecycler();
@@ -102,7 +103,7 @@ public class ParqueadoFragment extends Fragment {
             try {
                 parqueadoViewModel.buscarVehiculoParqueado(placa).map(historial -> historialesBuscado.add(historial));
             } catch (ExcepcionVehiculoNoSeEncuentraEnParqueadero e) {
-                Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                dialogoExepciones(e.getMessage()).show();
                 adapter.setListaParqueos(parqueados);
             }
 
@@ -132,19 +133,26 @@ public class ParqueadoFragment extends Fragment {
                         tipo = TipoVehiculo.MOTO;
                     }
 
-                    Vehiculo vehiculo = new Vehiculo(placa, cilindraje, tipo);
-                    Historial historial = new Historial(vehiculo, LocalDateTime.now());
-
-
                     try {
+                        Vehiculo vehiculo = new Vehiculo(placa, cilindraje, tipo);
+                        Historial historial = new Historial(vehiculo, LocalDateTime.now());
                         parqueados.add(parqueadoViewModel.ingresarVehiculo(historial));
-                    } catch (ExcepcionIngresoPlacaVehiculo | ExcepcionVehiculoYaEstaEnParqueadero | ExcepcionMaximoCupoVehiculo e) {
-                        Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                    } catch (ExepcionLongitudValor | ExcepcionIngresoPlacaVehiculo |
+                            ExcepcionVehiculoYaEstaEnParqueadero | ExcepcionMaximoCupoVehiculo e) {
+                        dialogoExepciones(e.getMessage()).show();
                     }
                     adapter.setListaParqueos(parqueados);
                     adapter.notifyDataSetChanged();
                     dialogoAgregarParqueo.dismiss();
                 });
+    }
+
+    private AlertDialog dialogoExepciones(String mensaje) {
+        AlertDialog.Builder dialogo = new AlertDialog.Builder(getContext());
+        dialogo.setTitle("ATENCION");
+        dialogo.setMessage(mensaje);
+        dialogo.setPositiveButton("OK", (dialogInterface, i) -> dialogInterface.dismiss());
+        return dialogo.create();
     }
 
 }

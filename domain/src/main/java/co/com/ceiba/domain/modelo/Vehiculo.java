@@ -48,6 +48,7 @@ public class Vehiculo {
     private void validarPlaca(String placa) {
         validadorObligatorio(placa);
         validadorNoVacio(placa);
+        validadorPlacaSinLetras(placa);
     }
 
     private void validarCilindraje(int cilindraje, TipoVehiculo tipo) {
@@ -65,6 +66,15 @@ public class Vehiculo {
     private void validadorNoVacio(String valor) {
         if (valor.trim().isEmpty()) {
             throw new ExepcionLongitudValor(LA_PLACA_DEBE_TENER_MINIMO_LETRAS);
+        }
+    }
+
+    private void validadorPlacaSinLetras(String valor){
+        try{
+            Integer.parseInt(valor);
+            throw new ExepcionLongitudValor(LA_PLACA_DEBE_TENER_MINIMO_LETRAS);
+        } catch (NumberFormatException nf){
+            return;
         }
     }
 

@@ -1,6 +1,6 @@
 package co.com.ceiba.clean.adapter;
 
-import android.os.AsyncTask;
+import android.app.AlertDialog;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
 
 import co.com.ceiba.clean.R;
@@ -71,19 +70,34 @@ public class RecyclerAdapterParqueado extends RecyclerView.Adapter<RecyclerViewH
     private void salidaVehiculo(int posicion) {
         Historial parqueo = parqueados.get(posicion);
         Historial historialActualizado = new Historial(parqueo.getVehiculo(), parqueo.getFechaIngreso(), LocalDateTime.now(), 0);
-        confirmarSalida(posicion, historialActualizado);
+        AlertDialog.Builder dialogo = new AlertDialog.Builder(activity);
+        dialogo.setTitle(R.string.confirmar);
+        dialogo.setMessage("¿Generar la salida del vehicuo?");
+        dialogo.setPositiveButton(R.string.confirmar, (dialogInterface, i) -> confirmarSalida(posicion, historialActualizado));
+        dialogo.setNegativeButton(R.string.cancelar, (dialogInterface, i) -> dialogInterface.cancel());
+        dialogo.create().show();
     }
 
     private void confirmarSalida(int posicion, Historial historial) {
         try {
-            List<Double> valor = new ArrayList<>();
-            ParqueadoFragment.parqueadoViewModel.actualizarHistorial(historial).map(aDouble -> valor.add(aDouble));
+            double valor = ParqueadoFragment.parqueadoViewModel.actualizarHistorial(historial).get();
             parqueados.remove(posicion);
             notifyDataSetChanged();
-            Toast.makeText(activity, "Valor A cobrar: "+valor.get(0), Toast.LENGTH_LONG).show();
+            AlertDialog.Builder dialogo = new AlertDialog.Builder(activity);
+            dialogo.setTitle("TOTAL A COBRAR");
+            dialogo.setMessage("VALOR: $"+valor);
+            dialogo.setPositiveButton("OK", (dialogInterface, i) -> Toast.makeText(activity, "Salida con Exito", Toast.LENGTH_SHORT).show());
+            dialogo.create().show();
         } catch (ExcepcionVehiculoNoSeEncuentraEnParqueadero e){
-            Toast.makeText(activity, e.getMessage(), Toast.LENGTH_SHORT).show();
+            dialogoExepciones(e.getMessage()).show();
         }
+    }
+
+    private AlertDialog dialogoExepciones(String mensaje){
+        AlertDialog.Builder dialogo = new AlertDialog.Builder(activity);
+        dialogo.setMessage(mensaje);
+        dialogo.setPositiveButton("OK", (dialogInterface, i) -> dialogInterface.dismiss());
+        return dialogo.create();
     }
 
 }

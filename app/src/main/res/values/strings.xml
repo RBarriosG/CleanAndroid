@@ -24,5 +24,7 @@
     <string name="agregar_vehiculo">Agregar vehiculo</string>
     <string name="ingrese_placa_a_buscar">Ingrese placa a buscar</string>
     <string name="boton_de_busqueda_parqueados">boton de busqueda parqueados</string>
+    <string name="confirmar">CONFIRMAR</string>
+    <string name="cancelar">CANCELAR</string>
 
 </resources>

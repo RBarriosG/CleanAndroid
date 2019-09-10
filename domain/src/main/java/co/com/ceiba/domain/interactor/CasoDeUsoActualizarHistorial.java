@@ -9,7 +9,7 @@ import co.com.ceiba.domain.repositorio.RepositorioHistorial;
 
 public class CasoDeUsoActualizarHistorial {
 
-    private static final String VEHICULO_NO_ESTA_EN_PARQUEADERO = "Vehiculo no está en parqueadero";
+    private static final String VEHICULO_NO_ESTA_EN_PARQUEADERO = "Vehiculo no esta en parqueadero";
 
     private RepositorioHistorial repositorioHistorial;
     private GenerarCobro generarCobro;
