@@ -25,7 +25,8 @@ public class CasoDeUsoActualizarHistorial {
         double cobro = calcularCobro(historial, fechaSalida);
         historial.setFechaSalida(fechaSalida);
         historial.setCobro(cobro);
-        return repositorioHistorial.actualizarHistorial(historial);
+        repositorioHistorial.actualizarHistorial(historial);
+        return cobro;
     }
 
     private double calcularCobro(Historial historial, LocalDateTime fechaSalida) {
