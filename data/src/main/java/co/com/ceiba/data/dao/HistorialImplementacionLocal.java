@@ -2,13 +2,9 @@ package co.com.ceiba.data.dao;
 
 import android.content.Context;
 
-import androidx.lifecycle.Observer;
-
 import java.util.List;
 import java.util.Optional;
 
-import co.com.ceiba.data.async.ActualizarVehiculoAsyncTask;
-import co.com.ceiba.data.async.IngresarVehiculoAsyncTask;
 import co.com.ceiba.data.conversor.ConversorHistorial;
 import co.com.ceiba.data.conversor.ConversorTipoVehiculo;
 import co.com.ceiba.data.db.BaseDeDatosParqueadero;
@@ -34,13 +30,13 @@ public class HistorialImplementacionLocal implements RepositorioHistorial {
 
     @Override
     public Historial ingresarVehiculo(Historial historial) {
-        new IngresarVehiculoAsyncTask(historialDao).execute(ConversorHistorial.convertirAEntidad(historial));
+        historialDao.ingresarVehiculo(ConversorHistorial.convertirAEntidad(historial));
         return historial;
     }
 
     @Override
     public double actualizarHistorial(Historial historial) {
-        new ActualizarVehiculoAsyncTask(historialDao).execute(ConversorHistorial.convertirAEntidad(historial));
+        historialDao.ingresarVehiculo(ConversorHistorial.convertirAEntidad(historial));
         return historial.getCobro();
     }
 

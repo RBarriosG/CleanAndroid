@@ -8,7 +8,6 @@ import java.util.Optional;
 
 import javax.inject.Inject;
 
-import co.com.ceiba.clean.viewmodel.async.IngresarVehiculo;
 import co.com.ceiba.domain.interactor.CasoDeUsoActualizarHistorial;
 import co.com.ceiba.domain.interactor.CasoDeUsoIngresarVehiculo;
 import co.com.ceiba.domain.interactor.CasoDeUsoListarVehiculosParqueados;
@@ -41,8 +40,7 @@ public class ParqueadoViewModel extends ViewModel {
     }
 
     public Historial ingresarVehiculo(Historial historial){
-        new IngresarVehiculo(casoDeUsoIngresarVehiculo).execute(historial);
-        return historial;
+        return casoDeUsoIngresarVehiculo.ejecutar(historial);
     }
 
     public Optional<Double> actualizarHistorial(Historial historial){

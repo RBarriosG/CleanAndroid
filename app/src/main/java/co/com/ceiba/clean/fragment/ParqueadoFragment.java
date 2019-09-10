@@ -137,7 +137,7 @@ public class ParqueadoFragment extends Fragment {
 
 
                     try {
-                        parqueados.add(parqueadoViewModel.ingresarVehiculo(historial));
+                        AsyncTask.execute(() -> parqueados.add(parqueadoViewModel.ingresarVehiculo(historial)));
                     } catch (ExcepcionIngresoPlacaVehiculo | ExcepcionVehiculoYaEstaEnParqueadero | ExcepcionMaximoCupoVehiculo e) {
                         Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                     }

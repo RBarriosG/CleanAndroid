@@ -17,7 +17,7 @@
 
         <ImageView
             android:id="@+id/historialesImagen"
-            android:layout_width="100dp"
+            android:layout_width="70dp"
             android:layout_height="150dp"
             android:contentDescription="@string/imagen_del_vehiculo_correspondiente"
             android:src="@drawable/ic_motocicleta"
