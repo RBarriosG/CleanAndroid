@@ -77,10 +77,10 @@ public class RecyclerAdapterParqueado extends RecyclerView.Adapter<RecyclerViewH
     private void confirmarSalida(int posicion, Historial historial) {
         try {
             List<Double> valor = new ArrayList<>();
-            AsyncTask.execute(() -> ParqueadoFragment.parqueadoViewModel.actualizarHistorial(historial).map(aDouble -> valor.add(aDouble)));
+            ParqueadoFragment.parqueadoViewModel.actualizarHistorial(historial).map(aDouble -> valor.add(aDouble));
             parqueados.remove(posicion);
             notifyDataSetChanged();
-            Toast.makeText(activity, "Valor A cobrar: "+valor.toString(), Toast.LENGTH_LONG).show();
+            Toast.makeText(activity, "Valor A cobrar: "+valor.get(0), Toast.LENGTH_LONG).show();
         } catch (ExcepcionVehiculoNoSeEncuentraEnParqueadero e){
             Toast.makeText(activity, e.getMessage(), Toast.LENGTH_SHORT).show();
         }

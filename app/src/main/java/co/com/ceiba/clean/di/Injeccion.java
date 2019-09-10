@@ -1,4 +1,4 @@
-package co.com.ceiba.clean;
+package co.com.ceiba.clean.di;
 
 import android.content.Context;
 

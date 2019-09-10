@@ -24,7 +24,7 @@ import java.util.Objects;
 
 import javax.inject.Inject;
 
-import co.com.ceiba.clean.Injeccion;
+import co.com.ceiba.clean.di.Injeccion;
 import co.com.ceiba.clean.R;
 import co.com.ceiba.clean.activity.MainActivity;
 import co.com.ceiba.clean.adapter.RecyclerAdapterParqueado;
@@ -73,7 +73,7 @@ public class ParqueadoFragment extends Fragment {
         editTextPlaca = root.findViewById(R.id.editTextPlaca);
 
         try {
-            AsyncTask.execute(() -> adapter.setListaParqueos(parqueados = parqueadoViewModel.listarParqueados()));
+            adapter.setListaParqueos(parqueados = parqueadoViewModel.listarParqueados());
         } catch (NullPointerException npe) {
             Toast.makeText(getContext(), "No hay vehiculos parqueados", Toast.LENGTH_SHORT).show();
         }
@@ -100,7 +100,7 @@ public class ParqueadoFragment extends Fragment {
             List<Historial> historialesBuscado = new ArrayList<>();
 
             try {
-                AsyncTask.execute(() -> parqueadoViewModel.buscarVehiculoParqueado(placa).map(historial -> historialesBuscado.add(historial)));
+                parqueadoViewModel.buscarVehiculoParqueado(placa).map(historial -> historialesBuscado.add(historial));
             } catch (ExcepcionVehiculoNoSeEncuentraEnParqueadero e) {
                 Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                 adapter.setListaParqueos(parqueados);
@@ -137,7 +137,7 @@ public class ParqueadoFragment extends Fragment {
 
 
                     try {
-                        AsyncTask.execute(() -> parqueados.add(parqueadoViewModel.ingresarVehiculo(historial)));
+                        parqueados.add(parqueadoViewModel.ingresarVehiculo(historial));
                     } catch (ExcepcionIngresoPlacaVehiculo | ExcepcionVehiculoYaEstaEnParqueadero | ExcepcionMaximoCupoVehiculo e) {
                         Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                     }

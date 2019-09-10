@@ -20,7 +20,7 @@ public abstract class BaseDeDatosParqueadero extends RoomDatabase {
         if (INSTANCE == null) {
             synchronized (BaseDeDatosParqueadero.class) {
                 if (INSTANCE == null) {
-                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(), BaseDeDatosParqueadero.class, "parqueadero.db").build();
+                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(), BaseDeDatosParqueadero.class, "parqueadero.db").allowMainThreadQueries().build();
                 }
             }
         }

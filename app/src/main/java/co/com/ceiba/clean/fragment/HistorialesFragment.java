@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 import javax.inject.Inject;
 
-import co.com.ceiba.clean.Injeccion;
+import co.com.ceiba.clean.di.Injeccion;
 import co.com.ceiba.clean.R;
 import co.com.ceiba.clean.adapter.RecyclerAdapterHistoriales;
 import co.com.ceiba.clean.viewmodel.HistorialesViewModel;
@@ -51,7 +51,7 @@ public class HistorialesFragment extends Fragment {
 
         recycler = root.findViewById(R.id.recyclerHistoriales);
         try {
-            AsyncTask.execute(() -> adapter.setHistoriales(historialesViewModel.listarHistoriales()));
+            adapter.setHistoriales(historialesViewModel.listarHistoriales());
         } catch (NullPointerException npe){
             Toast.makeText(getContext(), "No hay historial de vehiculos", Toast.LENGTH_SHORT).show();
         }
