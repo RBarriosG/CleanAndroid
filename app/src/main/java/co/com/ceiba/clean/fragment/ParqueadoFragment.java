@@ -3,6 +3,7 @@ package co.com.ceiba.clean.fragment;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.text.Editable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -121,7 +122,13 @@ public class ParqueadoFragment extends Fragment {
 
         ((AlertDialog) Objects.requireNonNull(dialogoAgregarParqueo.getDialog())).getButton(DialogInterface.BUTTON_POSITIVE)
                 .setOnClickListener(view -> {
-                    String placa = Objects.requireNonNull(dialogoAgregarParqueo.placaEditText.getText()).toString().toUpperCase().trim();
+
+                    String placa = "";
+                    if (dialogoAgregarParqueo.placaEditText.getText().toString().equals("")) {
+                        dialogoAgregarParqueo.placaInput.setError("vacia o menor a 6 caracteres");
+                    } else {
+                        placa = Objects.requireNonNull(dialogoAgregarParqueo.placaEditText.getText()).toString().toUpperCase().trim();
+                    }
                     int radioSeleccionado = dialogoAgregarParqueo.radioGrupoTipo.getCheckedRadioButtonId();
 
                     int cilindraje = Integer.parseInt(Objects.requireNonNull(dialogoAgregarParqueo.cilindrajeEditText.getText()).toString().trim());
@@ -146,6 +153,5 @@ public class ParqueadoFragment extends Fragment {
                     dialogoAgregarParqueo.dismiss();
                 });
     }
-
 
 }
