@@ -26,7 +26,7 @@ public class ReglaCobroCarroTest {
     private static final LocalDateTime FECHA_SALIDA_MAS_DE_UN_DIA = FECHA_INGRESO_DIA_HABIL.plusDays(1).plusHours(5);
     private static final LocalDateTime FECHA_MENOS_DE_UNA_HORA = FECHA_INGRESO_DIA_HABIL.plusMinutes(20);
 
-    private static final String VEHICULO_NO_ESTA_EN_PARQUEADERO = "Vehiculo no está en parqueadero";
+    private static final String VEHICULO_NO_ESTA_EN_PARQUEADERO = "Vehiculo no esta en parqueadero";
 
     @Test
     public void calcularCobroMenosDe9HorasTest() {

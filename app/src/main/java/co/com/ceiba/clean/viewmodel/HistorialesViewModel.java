@@ -15,7 +15,7 @@ public class HistorialesViewModel extends ViewModel {
     private CasoDeUsoListarHistoriales casoDeUsoListarHistoriales;
 
     @Inject
-    public HistorialesViewModel(CasoDeUsoListarHistoriales casoDeUsoListarHistoriales) {
+    HistorialesViewModel(CasoDeUsoListarHistoriales casoDeUsoListarHistoriales) {
         DaggerComponenteDeCasoDeUso.create();
         this.casoDeUsoListarHistoriales = casoDeUsoListarHistoriales;
     }

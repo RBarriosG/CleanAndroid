@@ -12,7 +12,7 @@ abstract class ReglaCobro {
     private static final int HORAS_DIA = 24;
     private static final int MILISEGUNDOS_HORA = 1000 * 3600;
 
-    public static ReglaCobro crear(Vehiculo vehiculo) {
+    static ReglaCobro crear(Vehiculo vehiculo) {
         if (vehiculo.getTipo() == TipoVehiculo.CARRO) {
             return new ReglaCobroCarro();
         } else {

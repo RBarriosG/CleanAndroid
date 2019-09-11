@@ -18,7 +18,7 @@ import static org.mockito.Mockito.when;
 
 public class CasoDeUsoObtenerVehiculoParqueadoTest {
 
-    private static final String VEHICULO_NO_ESTA_EN_PARQUEADERO = "Vehiculo no está en parqueadero";
+    private static final String VEHICULO_NO_ESTA_EN_PARQUEADERO = "Vehiculo no esta en parqueadero";
 
     @Test
     public void buscarVehiculoTest() {
@@ -42,7 +42,7 @@ public class CasoDeUsoObtenerVehiculoParqueadoTest {
         CasoDeUsoObtenerVehiculoParqueado casoDeUsoObtenerVehiculoParqueado = new CasoDeUsoObtenerVehiculoParqueado(repositorioHistorial);
         //act
         try {
-            Historial historialExperado = casoDeUsoObtenerVehiculoParqueado.ejecutar(historial.getVehiculo().getPlaca());
+            casoDeUsoObtenerVehiculoParqueado.ejecutar(historial.getVehiculo().getPlaca());
             fail();
         } catch (ExcepcionVehiculoNoSeEncuentraEnParqueadero e) {
             //assert

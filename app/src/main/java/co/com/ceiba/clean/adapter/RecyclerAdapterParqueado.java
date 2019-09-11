@@ -81,14 +81,16 @@ public class RecyclerAdapterParqueado extends RecyclerView.Adapter<RecyclerViewH
 
     private void confirmarSalida(int posicion, Historial historial) {
         try {
-            double valor = ParqueadoFragment.parqueadoViewModel.actualizarHistorial(historial).get();
-            parqueados.remove(posicion);
-            notifyDataSetChanged();
-            AlertDialog.Builder dialogo = new AlertDialog.Builder(activity);
-            dialogo.setTitle("TOTAL A COBRAR");
-            dialogo.setMessage("VALOR: $"+valor);
-            dialogo.setPositiveButton("OK", (dialogInterface, i) -> Toast.makeText(activity, "Salida con Exito", Toast.LENGTH_SHORT).show());
-            dialogo.create().show();
+            if (ParqueadoFragment.parqueadoViewModel.actualizarHistorial(historial).isPresent()) {
+                double valor = ParqueadoFragment.parqueadoViewModel.actualizarHistorial(historial).get();
+                parqueados.remove(posicion);
+                notifyDataSetChanged();
+                AlertDialog.Builder dialogo = new AlertDialog.Builder(activity);
+                dialogo.setTitle("TOTAL A COBRAR");
+                dialogo.setMessage("VALOR: $" + valor);
+                dialogo.setPositiveButton("OK", (dialogInterface, i) -> Toast.makeText(activity, "Salida con Exito", Toast.LENGTH_SHORT).show());
+                dialogo.create().show();
+            }
         } catch (ExcepcionVehiculoNoSeEncuentraEnParqueadero e){
             DialogoExepcion.dialogoExepciones(activity, e.getMessage()).show();
         }

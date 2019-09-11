@@ -25,7 +25,7 @@ public class ParqueadoViewModel extends ViewModel {
     private final CasoDeUsoIngresarVehiculo casoDeUsoIngresarVehiculo;
 
     @Inject
-    public ParqueadoViewModel(CasoDeUsoObtenerVehiculoParqueado casoDeUsoObtenerVehiculoParqueado,
+    ParqueadoViewModel(CasoDeUsoObtenerVehiculoParqueado casoDeUsoObtenerVehiculoParqueado,
                               CasoDeUsoListarVehiculosParqueados casoDeUsoListarVehiculosParqueados,
                               CasoDeUsoActualizarHistorial casoDeUsoActualizarHistorial,
                               CasoDeUsoIngresarVehiculo casoDeUsoIngresarVehiculo) {

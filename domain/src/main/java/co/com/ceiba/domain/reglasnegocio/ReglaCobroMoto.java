@@ -12,7 +12,7 @@ public class ReglaCobroMoto extends ReglaCobro {
     private static final int MAXIMO_CILINDRAJE = 500;
     private Vehiculo vehiculo;
 
-    public ReglaCobroMoto(Vehiculo vehiculo) {
+    ReglaCobroMoto(Vehiculo vehiculo) {
         this.vehiculo = vehiculo;
     }
 

@@ -3,9 +3,9 @@ package co.com.ceiba.domain.reglasnegocio;
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 
-public class ReglaFecha {
+class ReglaFecha {
 
-    public boolean esDiaHabil(LocalDateTime fechaIngreso) {
+    boolean esDiaHabil(LocalDateTime fechaIngreso) {
         return !esLunes(fechaIngreso) && !esDomingo(fechaIngreso);
     }
 

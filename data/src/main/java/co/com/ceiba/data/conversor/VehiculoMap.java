@@ -26,10 +26,6 @@ public class VehiculoMap {
         return cilindraje;
     }
 
-    public void setCilindraje(int cilindraje) {
-        this.cilindraje = cilindraje;
-    }
-
     public String getTipo() {
         return tipo;
     }

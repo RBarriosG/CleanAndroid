@@ -43,31 +43,16 @@ public class HistorialEntity {
         return fechaIngreso;
     }
 
-    public void setFechaIngreso(String fechaIngreso) {
-        this.fechaIngreso = fechaIngreso;
-    }
-
     public String getFechaSalida() {
         return fechaSalida;
-    }
-
-    public void setFechaSalida(String fechaSalida) {
-        this.fechaSalida = fechaSalida;
     }
 
     public VehiculoMap getVehiculo() {
         return vehiculo;
     }
 
-    public void setVehiculo(VehiculoMap vehiculo) {
-        this.vehiculo = vehiculo;
-    }
-
     public double getCobro() {
         return cobro;
     }
 
-    public void setCobro(double cobro) {
-        this.cobro = cobro;
-    }
 }
