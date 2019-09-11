@@ -4,13 +4,14 @@
     android:id="@+id/coordinatorLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="16dp">
+    android:padding="16dp"
+    app:layout_constraintCircleRadius="20dp">
 
     <TextView
         android:id="@+id/tituloDialogo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Agregar Vehiculo"
+        android:text="@string/agregar_vehiculo"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="@color/colorPrimaryDark"
         android:textStyle="bold"
@@ -59,8 +60,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="@string/carro"
-            android:checked="true"/>
+            android:checked="true"
+            android:text="@string/carro" />
 
         <RadioButton
             android:id="@+id/parqueosRbMoto"
@@ -76,7 +77,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
-        android:hint="Cilindraje"
+        android:hint="@string/hint_cilindraje"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -91,5 +92,28 @@
             android:maxLines="1" />
 
     </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/parqueadosBotonGuardar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/guardar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/parqueadosTilCilindraje" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/parqueadosBotonCancelar"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cancelar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/parqueadosBotonGuardar"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/parqueadosTilCilindraje" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

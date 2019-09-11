@@ -1,7 +1,5 @@
 package co.com.ceiba.clean.fragment;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -118,54 +116,57 @@ public class ParqueadoFragment extends Fragment {
         dialogoAgregarParqueo.show(Objects.requireNonNull(getActivity()).getSupportFragmentManager(), getString(R.string.dialogo_guardar));
         getActivity().getSupportFragmentManager().executePendingTransactions();
 
-        ((AlertDialog) Objects.requireNonNull(dialogoAgregarParqueo.getDialog())).getButton(DialogInterface.BUTTON_POSITIVE)
-                .setOnClickListener(view -> {
+        dialogoAgregarParqueo.botonGuadar.setOnClickListener(view -> {
 
-                    String placa;
+            String placa;
 
-                    if (Objects.requireNonNull(dialogoAgregarParqueo.placaEditText.getText()).toString().equals("") ||
-                            dialogoAgregarParqueo.placaEditText.getText().toString().length() < 5 ||
-                            dialogoAgregarParqueo.placaEditText.getText().toString().length() > 6) {
+            if (Objects.requireNonNull(dialogoAgregarParqueo.placaEditText.getText()).toString().equals("") ||
+                    dialogoAgregarParqueo.placaEditText.getText().toString().length() < 5 ||
+                    dialogoAgregarParqueo.placaEditText.getText().toString().length() > 6) {
 
-                        dialogoAgregarParqueo.placaInput.setError("Placa vacia o menor a 5 caracteres o mayor a 6 ");
-                        return;
+                dialogoAgregarParqueo.placaInput.setError(getString(R.string.error_placa));
+                return;
 
-                    } else {
-                        placa = Objects.requireNonNull(dialogoAgregarParqueo.placaEditText.getText()).toString().toUpperCase().trim();
-                    }
+            } else {
+                placa = Objects.requireNonNull(dialogoAgregarParqueo.placaEditText.getText()).toString().toUpperCase().trim();
+            }
 
-                    int radioSeleccionado = dialogoAgregarParqueo.radioGrupoTipo.getCheckedRadioButtonId();
+            int radioSeleccionado = dialogoAgregarParqueo.radioGrupoTipo.getCheckedRadioButtonId();
 
-                    TipoVehiculo tipo;
-                    if (radioSeleccionado == R.id.parqueosRbCarro) {
-                        tipo = TipoVehiculo.CARRO;
-                    } else {
-                        tipo = TipoVehiculo.MOTO;
-                    }
+            TipoVehiculo tipo;
+            if (radioSeleccionado == R.id.parqueosRbCarro) {
+                tipo = TipoVehiculo.CARRO;
+            } else {
+                tipo = TipoVehiculo.MOTO;
+            }
 
-                    int cilindraje;
+            int cilindraje;
 
-                    if (Objects.requireNonNull(dialogoAgregarParqueo.cilindrajeEditText.getText()).toString().equals("") && tipo == TipoVehiculo.MOTO) {
-                        dialogoAgregarParqueo.cilindrajeInput.setError("Debe ingresar el cilindraje");
-                        return;
-                    } else if (dialogoAgregarParqueo.cilindrajeEditText.getText().toString().equals("") && tipo == TipoVehiculo.CARRO) {
-                        cilindraje = 0;
-                    } else {
-                        cilindraje = Integer.parseInt(Objects.requireNonNull(dialogoAgregarParqueo.cilindrajeEditText.getText()).toString().trim());
-                    }
+            if (Objects.requireNonNull(dialogoAgregarParqueo.cilindrajeEditText.getText()).toString().equals("") && tipo == TipoVehiculo.MOTO) {
+                dialogoAgregarParqueo.cilindrajeInput.setError(getString(R.string.debe_ingresar_el_cilindraje));
+                return;
+            } else if (dialogoAgregarParqueo.cilindrajeEditText.getText().toString().equals("") && tipo == TipoVehiculo.CARRO) {
+                cilindraje = 0;
+            } else {
+                cilindraje = Integer.parseInt(Objects.requireNonNull(dialogoAgregarParqueo.cilindrajeEditText.getText()).toString().trim());
+            }
 
-                    try {
-                        Vehiculo vehiculo = new Vehiculo(placa, cilindraje, tipo);
-                        Historial historial = new Historial(vehiculo, LocalDateTime.now());
-                        parqueados.add(parqueadoViewModel.ingresarVehiculo(historial));
-                    } catch (ExepcionLongitudValor | ExcepcionIngresoPlacaVehiculo |
-                            ExcepcionVehiculoYaEstaEnParqueadero | ExcepcionMaximoCupoVehiculo e) {
-                        DialogoExepcion.dialogoExepciones(getContext(), e.getMessage()).show();
-                    }
-                    adapter.setListaParqueos(parqueados);
-                    adapter.notifyDataSetChanged();
-                    dialogoAgregarParqueo.dismiss();
-                });
+            try {
+                Vehiculo vehiculo = new Vehiculo(placa, cilindraje, tipo);
+                Historial historial = new Historial(vehiculo, LocalDateTime.now());
+                parqueados.add(parqueadoViewModel.ingresarVehiculo(historial));
+            } catch (ExepcionLongitudValor | ExcepcionIngresoPlacaVehiculo |
+                    ExcepcionVehiculoYaEstaEnParqueadero | ExcepcionMaximoCupoVehiculo e) {
+                DialogoExepcion.dialogoExepciones(getContext(), e.getMessage()).show();
+            }
+            adapter.setListaParqueos(parqueados);
+            adapter.notifyDataSetChanged();
+            dialogoAgregarParqueo.dismiss();
+
+        });
+
+        dialogoAgregarParqueo.botonCancelar.setOnClickListener(view -> dialogoAgregarParqueo.dismiss());
+
     }
 
 }

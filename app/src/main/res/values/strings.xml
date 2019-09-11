@@ -32,5 +32,9 @@
     <string name="atencion">ATENCION</string>
     <string name="no_hay_historiales_de_vehiculos">No hay historial de vehiculos</string>
     <string name="generar_la_salida_del_vehiculo">¿Generar la salida del vehicuo?</string>
+    <string name="hint_cilindraje">Cilindraje</string>
+    <string name="guardar">Guardar</string>
+    <string name="debe_ingresar_el_cilindraje">Debe ingresar el cilindraje</string>
+    <string name="error_placa">Placa vacia o menor a 5 caracteres o mayor a 6</string>
 
 </resources>
