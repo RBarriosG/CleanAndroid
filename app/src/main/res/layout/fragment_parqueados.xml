@@ -26,6 +26,7 @@
             android:ems="10"
             android:hint="@string/ingrese_placa_a_buscar"
             android:inputType="textPersonName"
+            android:focusable="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.494"

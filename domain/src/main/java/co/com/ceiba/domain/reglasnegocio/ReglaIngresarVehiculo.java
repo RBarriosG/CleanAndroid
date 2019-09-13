@@ -11,7 +11,7 @@ import co.com.ceiba.domain.repositorio.RepositorioHistorial;
 public class ReglaIngresarVehiculo {
 
     private static final String DIA_NO_HABIL_PARA_INGRESO = "Dia no habil para ingreso";
-    private static final String VEHICULO_YA_ESTA_EN_EL_PARQUEADERO = "Vehiculo ya está en el parqueadero";
+    private static final String VEHICULO_YA_ESTA_EN_EL_PARQUEADERO = "Vehiculo ya esta en el parqueadero";
     private static final String CUPO_MAXIMO_DE_CARROS = "Cupo maximo de carros";
     private static final String CUPO_MAXIMO_DE_MOTOS = "Cupo maximo de motos";
 
